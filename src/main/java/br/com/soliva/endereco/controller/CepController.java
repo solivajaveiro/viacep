@@ -4,15 +4,16 @@ import br.com.soliva.endereco.dto.AddressDTO;
 import br.com.soliva.endereco.services.CepService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-@RequestMapping("/cep")
+@RequestMapping(CepController.BASE_URL)
 public class CepController {
+
+    public static final String GET_ADDRESS_BY_CEP = "/{cep}";
+    public static final String BASE_URL = "/cep";
 
     private CepService cepService;
 
@@ -21,7 +22,8 @@ public class CepController {
         this.cepService = cepService;
     }
 
-    @GetMapping("/{cep}")
+    @GetMapping(GET_ADDRESS_BY_CEP)
+    @ResponseStatus(HttpStatus.OK)
     public AddressDTO getAddressByCep(@PathVariable("cep") String cep) {
         return cepService.getAddressByCep(cep);
     }
