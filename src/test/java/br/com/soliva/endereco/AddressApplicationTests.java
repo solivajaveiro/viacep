@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EnderecoApplicationTests {
+class AddressApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void main() {
+		AddressApplication.main(new String[] {});
 	}
-
 }
